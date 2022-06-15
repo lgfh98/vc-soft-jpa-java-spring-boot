@@ -5,7 +5,12 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Student")
-@Table
+@Table(
+        name = "Student",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        }
+)
 public class Student {
     @Id
     /**
@@ -38,7 +43,6 @@ public class Student {
     @Column(
             name = "email",
             nullable = false,
-            unique = true,
             length = 50
     )
 
